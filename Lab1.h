@@ -43,7 +43,7 @@ public:
     }
 
     static void productOfPrimes() {
-        
+
         std::function<bool(int)> isPrimeNested = [](int n) {
             int a = 2;
             while (n % a != 0) {
