@@ -27,7 +27,20 @@ public:
     }
 
     static void isPrime() {
-
+            std::cout <<"Number to check if it's prime" << std::endl;
+            int n = 0;
+            std::cin>>n;
+            int a = 2;
+            while(! (n % a == 0))
+            {
+                if(a >= n-1)
+                {
+                    std::cout<<n<<" is prime"<<std::endl;
+                    return;
+                }
+                a++;
+            }
+            std::cout<<n<<" is not prime"<<std::endl;
     }
 };
 
