@@ -6,6 +6,7 @@
 #define ENGINEERING_LAB1_H
 
 #include <functional>
+#include <string>
 
 class Lab1 {
 public:
@@ -67,6 +68,22 @@ public:
                 while (!isPrimeNested(++a)) {}
             }
         }
+
+    }
+
+    static void DecToP() {
+        std::cout << "Input number in decimal and base of system you want to convert to" << std::endl;
+        int decimal = 0;
+        int base = 0;
+        std::cin >> decimal;
+        std::cin >> base;
+        std::string res;
+        while(decimal > 0)
+        {
+            res = std::to_string(decimal % base) + res;
+            decimal /= base;
+        }
+        std::cout<<"Number in "<<base<<" system is: "<<res<<std::endl;
 
     }
 };

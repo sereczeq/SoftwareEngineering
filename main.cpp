@@ -3,6 +3,7 @@
 int main() {
     //Lab1::fibonacci();
     //Lab1::isPrime();
-    Lab1::productOfPrimes();
+    //Lab1::productOfPrimes();
+    Lab1::DecToP();
     return 0;
 }
