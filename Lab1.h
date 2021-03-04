@@ -45,7 +45,7 @@ public:
 
     static void productOfPrimes() {
 
-        std::function<bool(int)> isPrimeNested = [](int n) {
+        std::function<bool(int)> isPrime = [](int n) {
             int a = 2;
             while (n % a != 0) {
                 if (a >= n - 1) {
@@ -65,7 +65,7 @@ public:
                 std::cout << a << " * ";
                 n /= a;
             } else {
-                while (!isPrimeNested(++a)) {}
+                while (!isPrime(++a)) {}
             }
         }
 
@@ -86,6 +86,126 @@ public:
         std::cout<<"Number in "<<base<<" system is: "<<res<<std::endl;
 
     }
+
+    //TODO: make sure it works lol
+    static void sin()
+    {
+
+        std::function<float(float, float)> raiseToPower = [](float number, int power)
+        {
+            float result = 1;
+            while(power > 0)
+            {
+                result *= number;
+                power--;
+            }
+            return result;
+        };
+
+        std::function<int(int)> factorial = [](int number)
+        {
+            int result = 1;
+            while(number > 0)
+            {
+                result *= number;
+                number--;
+            }
+            return result;
+        };
+
+        std::cout << "Input number to calculate sin of and epsilon" << std::endl;
+        float x = 0;
+        float epsilon = 0;
+        std::cin>>x;
+        std::cin>>epsilon;
+
+        float result = x;
+        float lastResult = epsilon;
+        int power = 3;
+        std::string sign = "minus";
+
+        while(lastResult - result > epsilon || lastResult - result < -epsilon)
+        {
+            lastResult = result;
+            std::cout<<result<<std::endl;
+            float temp = raiseToPower(x, power) / factorial(power);
+            if(sign == "plus")
+            {
+                result += temp;
+                sign = "minus";
+            }
+            else
+            {
+                result -= temp;
+                sign = "plus";
+            }
+            power++;
+        }
+
+        std::cout<<"Sinus of number is approximately equal to: "<<result<<std::endl;
+    }
+
+    static void PolynomialNaive()
+    {
+
+        std::function<float(float, float)> raiseToPower = [](float number, int power)
+        {
+            float result = 1;
+            while(power > 0)
+            {
+                result *= number;
+                power--;
+            }
+            return result;
+        };
+
+        std::cout<<"Input x"<<std::endl;
+        float x= 0;
+        std::cin>>x;
+
+        float result = 0;
+
+        bool cont = true;
+        while(cont)
+        {
+            float coefficient = 0;
+            int power = 0;
+            std::cout<<"Input coefficient and corresponding power of x"<<std::endl;
+            std::cin >> coefficient;
+            std::cin>>power;
+
+            result += coefficient * raiseToPower(x, power);
+
+            std::cout<<"Do you want to continue? [1-yes/0-no]"<<std::endl;
+            std::cin>>cont;
+        }
+        std::cout<<"Result of your polynomial is: "<<result<<std::endl;
+    }
+
+    static void PolynomialHorners()
+    {
+        std::function<float(float)> polynomial = [&] (float x)
+        {
+            std::cout<<"Input coefficient"<<std::endl;
+            float coefficient = 0;
+            std::cin>>coefficient;
+            bool cont;
+            std::cout<<"Do you want to continue? [1-yes/0-no]"<<std::endl;
+            std::cin>>cont;
+            if(cont)
+            {
+                return coefficient + x * polynomial(x);
+            }
+            else return coefficient;
+
+        };
+
+        std::cout<<"Input x"<<std::endl;
+        float x= 0;
+        std::cin>>x;
+        std::cout<<"The result of polynomial is: "<<polynomial(x)<<std::endl;
+    }
+
 };
 
 
