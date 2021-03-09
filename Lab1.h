@@ -87,8 +87,65 @@ public:
 
     }
 
+
     //TODO: make sure it works lol
-    static void sin()
+    static void sinN()
+    {
+
+        std::function<float(float, float)> raiseToPower = [](float number, int power)
+        {
+            float result = 1;
+            while(power > 0)
+            {
+                result *= number;
+                power--;
+            }
+            return result;
+        };
+
+        std::function<int(int)> factorial = [](int number)
+        {
+            int result = 1;
+            while(number > 0)
+            {
+                result *= number;
+                number--;
+            }
+            return result;
+        };
+
+        std::cout << "Input number to calculate sin of and n" << std::endl;
+        float x = 0;
+        int maxPower = 0;
+        std::cin>>x;
+        std::cin>>epsilon;
+
+        float result = x;
+        int power = 3;
+        std::string sign = "minus";
+
+        while(power < maxPower)
+        {
+            std::cout<<result<<std::endl;
+            float temp = raiseToPower(x, power) / factorial(power);
+            if(sign == "plus")
+            {
+                result += temp;
+                sign = "minus";
+            }
+            else
+            {
+                result -= temp;
+                sign = "plus";
+            }
+            power+=2;
+        }
+
+        std::cout<<"Sinus of number is approximately equal to: "<<result<<std::endl;
+    }
+
+    //TODO: make sure it works lol
+    static void sinEpsilon()
     {
 
         std::function<float(float, float)> raiseToPower = [](float number, int power)
@@ -139,7 +196,7 @@ public:
                 result -= temp;
                 sign = "plus";
             }
-            power++;
+            power+=2;
         }
 
         std::cout<<"Sinus of number is approximately equal to: "<<result<<std::endl;
